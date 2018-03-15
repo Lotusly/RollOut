@@ -128,6 +128,7 @@ public class Plane : MonoBehaviour
 	
 	public void PlayerGoDown(int n)
 	{
+		//print("down "+n.ToString());
 		//Color mode
 		/*for (int times = 0; times < n; times++)
 		{
@@ -174,7 +175,7 @@ public class Plane : MonoBehaviour
 			}
 			
 		}*/
-		
+		//print("up "+n.ToString());
 		for (int times = 0; times < n; times++)
 		{
 			for (int j = 0; j < Size; j++)
@@ -216,8 +217,9 @@ public class Plane : MonoBehaviour
 		}
 	}
 	
-	public bool CheckCenter()
+	public int GetCenter()
 	{
-		return plates[((Size - 1) / 2)*Size + ((Size - 1) / 2)].GetColor()!=6;
+		
+		return plates[((Size - 1) / 2)*Size + ((Size - 1) / 2)].GetColor();
 	}
 }

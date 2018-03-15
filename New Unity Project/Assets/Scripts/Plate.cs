@@ -19,7 +19,7 @@ public class Plate : MonoBehaviour
 
 	private Collider coll;
 
-	private int color;
+	public int color;
 
 	private Color[] colors;
 
@@ -32,7 +32,9 @@ public class Plate : MonoBehaviour
 		rend = GetComponent<Renderer>();
 		state = 0;
 		possibility = 0.02f;
-		colors = new Color[7] {Color.blue, Color.cyan, Color.red, Color.magenta, Color.green, Color.yellow,Color.clear};
+		//colors = new Color[7] {Color.blue, Color.cyan, Color.red, Color.magenta, Color.green, Color.yellow,Color.clear};
+		colors = new Color[7] {Color.blue, Color.cyan, Color.yellow, Color.green, Color.red, Color.magenta, Color.clear};
+
 		coll = GetComponent<Collider>();
 	}
 	
@@ -66,6 +68,7 @@ public class Plate : MonoBehaviour
 			StopCoroutine(flushing);
 		}
 		rend.material.color = colors[index];
+		color = index;
 		if (index == 6)
 		{
 			coll.enabled = false;
