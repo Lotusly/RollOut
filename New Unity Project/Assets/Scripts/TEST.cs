@@ -15,7 +15,7 @@ public class TEST : MonoBehaviour {
 		
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			Plane.instance.Initialize();
+			//Plane.instance.Initialize();
 			
 		}
 	}

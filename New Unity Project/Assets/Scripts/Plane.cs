@@ -39,7 +39,7 @@ public class Plane : MonoBehaviour
 				plates[i * Size + j].AssignIndex(i, j);
 			}
 		}
-		
+		Initialize();
 		
 	}
 	
@@ -221,5 +221,10 @@ public class Plane : MonoBehaviour
 	{
 		
 		return plates[((Size - 1) / 2)*Size + ((Size - 1) / 2)].GetColor();
+	}
+
+	public void HitCenter()
+	{
+		plates[((Size - 1) / 2) * Size + ((Size - 1) / 2)].AssignColor(7);
 	}
 }

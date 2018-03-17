@@ -33,9 +33,10 @@ public class Plate : MonoBehaviour
 		state = 0;
 		possibility = 0.02f;
 		//colors = new Color[7] {Color.blue, Color.cyan, Color.red, Color.magenta, Color.green, Color.yellow,Color.clear};
-		colors = new Color[7] {Color.blue, Color.cyan, Color.yellow, Color.green, Color.red, Color.magenta, Color.clear};
+		colors = new Color[8] {Color.blue, Color.cyan, Color.yellow, Color.green, Color.red, Color.magenta, Color.clear,Color.white};
 
 		coll = GetComponent<Collider>();
+		
 	}
 	
 	// Update is called once per frame
@@ -44,7 +45,7 @@ public class Plate : MonoBehaviour
 		{
 			case 0:
 			{
-				if (Random.value< possibility * Time.deltaTime )
+				if (color<6 && Random.value< GameController.instance.possibility * Time.deltaTime )
 				{
 					int tmp = Random.Range(0, 7);
 					if (tmp != color)
@@ -71,8 +72,10 @@ public class Plate : MonoBehaviour
 		color = index;
 		if (index == 6)
 		{
+			
 			coll.enabled = false;
 			state = 2;
+			Player.instance.CheckPosition();
 		}
 		else
 		{

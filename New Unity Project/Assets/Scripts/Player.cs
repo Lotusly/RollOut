@@ -62,33 +62,74 @@ public class Player : MonoBehaviour
 		{
 			if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
 			{
-				
 				anim.SetTrigger("UP");
 				controllable = false;
-				steps = 1;
 				direction = 1;
+
+				if (Input.GetKey(KeyCode.Space))
+				{
+					if(ScoreSystem.instance.AddEnergy(-4))
+						steps = 2;
+				}
+				else
+				{
+					steps = 1;
+				}
 			}
 			else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
 			{
 				anim.SetTrigger("DOWN");
 				controllable = false;
-				steps = 1;
+				
 				direction = 2;
+
+				if (Input.GetKey(KeyCode.Space))
+				{
+					if(ScoreSystem.instance.AddEnergy(-4))
+						steps = 2;
+
+				}
+				else
+				{
+					steps = 1;
+				}
 				
 			}
 			else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
 			{
 				anim.SetTrigger("LEFT");
 				controllable = false;
-				steps = 1;
 				direction = 3;
+				if (Input.GetKey(KeyCode.Space))
+				{
+					if(ScoreSystem.instance.AddEnergy(-4))
+						steps = 2;			
+				}
+				else
+				{
+					steps = 1;
+				}
 			}
 			else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
 			{
 				anim.SetTrigger("RIGHT");
 				controllable = false;
-				steps = 1;
 				direction = 4;
+				if (Input.GetKey(KeyCode.Space))
+				{
+					if(ScoreSystem.instance.AddEnergy(-4))
+						steps = 2;
+				}
+				else
+				{
+					steps = 1;
+				}
+			}
+			else if (Input.GetKeyDown(KeyCode.Return))
+			{
+				if(ScoreSystem.instance.AddEnergy(-8))
+					Plane.instance.Initialize();
+				
 			}
 		}
 		else
@@ -199,7 +240,12 @@ public class Player : MonoBehaviour
 		{
 			//if(center!=0) print("center != 0");
 			//print("center color = " + center.ToString());
-			if(faces[0].color==center) ScoreSystem.instance.AddScore(1);
+			if (faces[0].color == center)
+			{
+				Plane.instance.HitCenter();
+				ScoreSystem.instance.AddScore(1);
+				ScoreSystem.instance.AddEnergy(1);
+			}
 			transform.position=Vector3.zero;
 		}
 	}

@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\15759\.Rider2017.2\system\resharper-host\local\Transient\ReSharperHost\v10\SolutionCaches\_New Unity Project.822141828.00" t="ExcludeRecursive" />
+    <e p="D:\ETC\Project2018Spring\PicoCTF\RollOut\New Unity Project" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Paper Environment Pack vol. 1" t="Include">
+          <e p="ReadMe.txt" t="Include" />
+        </e>
+        <e p="Plugins" t="Include">
+          <e p="Editor" t="Include">
+            <e p="JetBrains" t="Include">
+              <e p="Unity3DRider.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="GameController.cs" t="Include" />
+          <e p="Plane.cs" t="Include" />
+          <e p="Plate.cs" t="Include" />
+          <e p="Player.cs" t="Include" />
+          <e p="ScoreSystem.cs" t="Include" />
+          <e p="SoundController.cs" t="Include" />
+          <e p="TEST.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="New Unity Project.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+  </component>
   <component name="RiderRiderContentModelStore">
     <excludedPaths>
       <Path>Temp</Path>
