@@ -7,7 +7,7 @@ public class ScoreSystem : MonoBehaviour
 {
 
 	public static ScoreSystem instance;
-	private int score = 0;
+	public int score = 0;
 	public int energy = 0;
 	public Slider SkillBar;
 	// Use this for initialization

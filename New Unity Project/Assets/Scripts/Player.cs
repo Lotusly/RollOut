@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
@@ -17,16 +18,23 @@ public class Player : MonoBehaviour
 	private Animator anim;
 
 	private int direction;
+	private int nextDirection;
 
 	private int steps;
 
-	public float Percentage;
+	private int nextSteps;
+	
+	//public float Percentage;
 
 	private face[] faces;
 
 	private int[] faceMapping;
 
 	private Color[] colors;
+
+	//private Coroutine running;
+	public bool update=false ;
+	private AnimatorStateInfo animationState;
 	// Use this for initialization
 	void Awake()
 	{
@@ -57,23 +65,25 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 
 	
-	void Update () {
+	void Update ()
+	{
+		if (update) updatePosition();
 		if (controllable)
 		{
 			if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
 			{
 				anim.SetTrigger("UP");
 				controllable = false;
-				direction = 1;
+				nextDirection = 1;
 
 				if (Input.GetKey(KeyCode.Space))
 				{
 					if(ScoreSystem.instance.AddEnergy(-4))
-						steps = 2;
+						nextSteps = 2;
 				}
 				else
 				{
-					steps = 1;
+					nextSteps = 1;
 				}
 			}
 			else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
@@ -81,17 +91,17 @@ public class Player : MonoBehaviour
 				anim.SetTrigger("DOWN");
 				controllable = false;
 				
-				direction = 2;
+				nextDirection = 2;
 
 				if (Input.GetKey(KeyCode.Space))
 				{
 					if(ScoreSystem.instance.AddEnergy(-4))
-						steps = 2;
+						nextSteps = 2;
 
 				}
 				else
 				{
-					steps = 1;
+					nextSteps = 1;
 				}
 				
 			}
@@ -99,30 +109,30 @@ public class Player : MonoBehaviour
 			{
 				anim.SetTrigger("LEFT");
 				controllable = false;
-				direction = 3;
+				nextDirection = 3;
 				if (Input.GetKey(KeyCode.Space))
 				{
 					if(ScoreSystem.instance.AddEnergy(-4))
-						steps = 2;			
+						nextSteps = 2;			
 				}
 				else
 				{
-					steps = 1;
+					nextSteps = 1;
 				}
 			}
 			else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
 			{
 				anim.SetTrigger("RIGHT");
 				controllable = false;
-				direction = 4;
+				nextDirection = 4;
 				if (Input.GetKey(KeyCode.Space))
 				{
 					if(ScoreSystem.instance.AddEnergy(-4))
-						steps = 2;
+						nextSteps = 2;
 				}
 				else
 				{
-					steps = 1;
+					nextSteps = 1;
 				}
 			}
 			else if (Input.GetKeyDown(KeyCode.Return))
@@ -134,41 +144,68 @@ public class Player : MonoBehaviour
 		}
 		else
 		{
-			updatePosition();
+			//updatePosition();
 		}
 	}
 
 	private void goUp()
 	{
+		
+		direction = nextDirection;
+		steps = nextSteps;
+		print("up "+steps);
 		Plane.instance.PlayerGoUp(steps);
 		updateColor(0);
-		transform.position = new Vector3(0,0,-steps);
+		//transform.position = new Vector3(0,0,-steps);
+		updatePosition();
 		Plane.instance.Flush();
+		
+		//update = true;
 	}
 
 	private void goDown()
 	{
+		//print("down");
+		direction = nextDirection;
+		steps = nextSteps;
+		print("down "+steps);
 		Plane.instance.PlayerGoDown(steps);
 		updateColor(1);
-		transform.position = new Vector3(0,0,steps);
+		//transform.position = new Vector3(0,0,steps);
+		updatePosition();
 		Plane.instance.Flush();
-		
+		//animationState = anim.GetCurrentAnimatorStateInfo(0);
+		//update = true;
 	}
 	
 	private void goLeft()
 	{
+		//print("left");
+		direction = nextDirection;
+		steps = nextSteps;
+		print("left "+steps);
 		Plane.instance.PlayerGoLeft(steps);
 		updateColor(2);
-		transform.position = new Vector3(steps,0,0);
+		//transform.position = new Vector3(steps,0,0);
+		updatePosition();
 		Plane.instance.Flush();
+		//animationState = anim.GetCurrentAnimatorStateInfo(0);
+		//update = true;
 	}
 	
 	private void goRight()
 	{
+		//print("right");
+		direction = nextDirection;
+		steps = nextSteps;
+		print("right "+steps);
 		Plane.instance.PlayerGoRight(steps);
 		updateColor(3);
-		transform.position = new Vector3(-steps,0,0);
+		//transform.position = new Vector3(-steps,0,0);
+		updatePosition();
 		Plane.instance.Flush();
+		//animationState = anim.GetCurrentAnimatorStateInfo(0);
+		//update = true;
 	}
 	
 
@@ -188,35 +225,44 @@ public class Player : MonoBehaviour
 
 	private void updatePosition()
 	{
+		//yield return null;
+		
 		switch (direction)
 		{
-			case 0:
-			{
-				break;
-				
-			}
 			case 1:
 			{
 				// Up
-				transform.position = new Vector3(0,0,-steps * Percentage);
+				animationState = anim.GetCurrentAnimatorStateInfo(0);
+				transform.position = new Vector3(0, 0, -steps * (1-animationState.normalizedTime));
+					//yield return new WaitForEndOfFrame();
+				
 				break;
 			}
 			case 2:
 			{
 				// Down
-				transform.position = new Vector3(0,0,steps * Percentage);
+				animationState = anim.GetCurrentAnimatorStateInfo(0);
+				transform.position = new Vector3(0, 0, steps * (1-animationState.normalizedTime));
+					//yield return new WaitForEndOfFrame();
+				
 				break;
 			}
 			case 3:
 			{
 				// Left
-				transform.position = new Vector3(steps * Percentage, 0, 0);
+				animationState = anim.GetCurrentAnimatorStateInfo(0);
+				transform.position = new Vector3(steps * (1-animationState.normalizedTime), 0, 0);
+					//yield return new WaitForEndOfFrame();
+				
 				break;
 			}
 			case 4:
 			{
 				// Right
-				transform.position = new Vector3(-steps * Percentage, 0, 0);
+				animationState = anim.GetCurrentAnimatorStateInfo(0);
+				transform.position = new Vector3(-steps * (1-animationState.normalizedTime), 0, 0);
+					//yield return new WaitForEndOfFrame();
+				
 				break;
 			}		
 		}
@@ -230,10 +276,12 @@ public class Player : MonoBehaviour
 
 	public void CheckPosition()
 	{
+		//update = false;
 		int center = Plane.instance.GetCenter();
 		if (center==6)
 		{
 			anim.enabled = false;
+			update = false;
 			controllable = false;
 		}
 		else
