@@ -537,6 +537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibility: 0
   Ingrediant: 0.005
+  Canvas: {fileID: 1708495510}
 --- !u!1 &224277129
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,6 +914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibility: 0
   Ingrediant: 0.005
+  Canvas: {fileID: 0}
 --- !u!4 &488210951
 Transform:
   m_ObjectHideFlags: 0
@@ -1766,6 +1768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f172e90052293854d9a3b45c5e2658e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
   energy: 0
   SkillBar: {fileID: 2030220845}
 --- !u!4 &1370712668
@@ -2032,7 +2035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1708495511
 MonoBehaviour:
   m_ObjectHideFlags: 0
