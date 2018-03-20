@@ -67,6 +67,65 @@ public class Plane : MonoBehaviour
 		}
 	}
 
+	public void GradualInitialize()
+	{
+		int tmp = (Size + 1) / 2-1;
+		Plate [,] matrix=new Plate[tmp,4*(Size-1)];
+		for (int i = 0; i < tmp; i++)
+		{
+			for (int j = 0; j < (i+1)*2; j ++)
+			{
+				int x = (Size - 1) / 2 - (i + 1);
+				int y = (Size - 1) / 2 - (i + 1) + j;
+				print("matrix: " + i + " " + j + " plates: " + x + " " + y);
+
+				matrix[i, j] = plates[x * Size + y];
+			}
+			for (int j = (i + 1); j < (i + 1); j++)
+			{
+				int x = (Size - 1) / 2 - (i + 1)+j;
+				int y = (Size - 1) / 2 + (i + 1);
+				print("matrix: " + i + " " + j + " plates: " + x + " " + y);
+
+				matrix[i, j+(i+1)*2] = plates[x * Size + y];
+			}
+			for (int j = (i + 1); j < (i + 1); j++)
+			{
+				int x = (Size - 1) / 2 + (i + 1);
+				int y = (Size - 1) / 2 + (i + 1) - j;
+				print("matrix: " + i + " " + j + " plates: " + x + " " + y);
+
+				matrix[i, j+(i+1)*4] = plates[x * Size + y];
+			}
+			for (int j = (i + 1); j < (i + 1); j++)
+			{
+				int x = (Size - 1) / 2 + (i + 1) - j;
+				int y = (Size - 1) / 2 - (i + 1);
+				print("matrix: " + i + " " + j + " plates: " + x + " " + y);
+
+				matrix[i, j+(i+1)*8] = plates[x * Size + y];
+			}
+		}
+
+		plates[(Size - 1) / 2 * Size + (Size - 1) / 2].AssignColor(Random.Range(0, 6));
+		StartCoroutine(gradualInitialize(matrix,tmp));
+
+
+	}
+
+	private IEnumerator gradualInitialize(Plate[,] matrix,int size)
+	{
+		for (int i = 0; i < size; i++)
+		{
+			yield return new WaitForSecondsRealtime(0.2f);
+			for (int j = 0; j < (i + 1) * 8; j++)
+			{
+				matrix[i, j].AssignColor(Random.Range(0, 6));
+			}
+		}
+
+	}
+
 	public void PlayerGoLeft(int n)
 	{
 		/*for (int times = 0; times < n; times++)

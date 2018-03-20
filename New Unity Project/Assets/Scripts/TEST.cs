@@ -13,10 +13,10 @@ public class TEST : MonoBehaviour {
 	void Update () {
 		
 		
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKeyDown(KeyCode.R))
 		{
 			//Plane.instance.Initialize();
-			
+			Plane.instance.GradualInitialize();
 		}
 	}
 }
