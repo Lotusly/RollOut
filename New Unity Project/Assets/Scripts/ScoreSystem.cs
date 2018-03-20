@@ -9,7 +9,7 @@ public class ScoreSystem : MonoBehaviour
 	public static ScoreSystem instance;
 	public int score = 0;
 	public int energy = 0;
-	public Slider SkillBar;
+	//public Slider SkillBar;
 	// Use this for initialization
 	void Awake()
 	{
@@ -35,7 +35,8 @@ public class ScoreSystem : MonoBehaviour
 		if (a > 0)
 		{
 			energy = Mathf.Min(energy + a, 8);
-			SkillBar.value=energy*0.125f;
+			//SkillBar.value=energy*0.125f;
+			GeneralCanvas.instance.ShowEnergy((energy));
 			return true;
 		}
 		else
@@ -43,7 +44,8 @@ public class ScoreSystem : MonoBehaviour
 			if (energy + a >= 0)
 			{
 				energy = energy + a;
-				SkillBar.value=energy*0.125f;
+				//SkillBar.value=energy*0.125f;
+				GeneralCanvas.instance.ShowEnergy((energy));
 				return true;
 			}
 			else

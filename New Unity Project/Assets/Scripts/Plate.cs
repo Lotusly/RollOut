@@ -97,9 +97,10 @@ public class Plate : MonoBehaviour
 		int times = 0;
 		while (times < 3)
 		{
-			rend.material.color *= 1 + (direction ? 0.1f : -0.1f);
-			float maximum = Mathf.Max(Mathf.Max(rend.material.color.r, rend.material.color.g), rend.material.color.b);
-			if (maximum < 0.4f || maximum > 1)
+			Color tmp = rend.material.color;
+			rend.material.color = new Color(tmp.r,tmp.g,tmp.b,tmp.a*( 1 + (direction ? 0.1f : -0.1f)));
+			float a = rend.material.color.a;
+			if (a < 0.4f || a > 1)
 			{
 				direction = !direction;
 				if (!direction) times++;

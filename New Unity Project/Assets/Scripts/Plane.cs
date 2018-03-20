@@ -81,7 +81,7 @@ public class Plane : MonoBehaviour
 
 				matrix[i, j] = plates[x * Size + y];
 			}
-			for (int j = (i + 1); j < (i + 1); j++)
+			for (int j = 0; j < (i+1)*2; j ++)
 			{
 				int x = (Size - 1) / 2 - (i + 1)+j;
 				int y = (Size - 1) / 2 + (i + 1);
@@ -89,7 +89,7 @@ public class Plane : MonoBehaviour
 
 				matrix[i, j+(i+1)*2] = plates[x * Size + y];
 			}
-			for (int j = (i + 1); j < (i + 1); j++)
+			for (int j = 0; j < (i+1)*2; j ++)
 			{
 				int x = (Size - 1) / 2 + (i + 1);
 				int y = (Size - 1) / 2 + (i + 1) - j;
@@ -97,19 +97,19 @@ public class Plane : MonoBehaviour
 
 				matrix[i, j+(i+1)*4] = plates[x * Size + y];
 			}
-			for (int j = (i + 1); j < (i + 1); j++)
+			for (int j = 0; j < (i+1)*2; j ++)
 			{
 				int x = (Size - 1) / 2 + (i + 1) - j;
 				int y = (Size - 1) / 2 - (i + 1);
 				print("matrix: " + i + " " + j + " plates: " + x + " " + y);
 
-				matrix[i, j+(i+1)*8] = plates[x * Size + y];
+				matrix[i, j+(i+1)*6] = plates[x * Size + y];
 			}
 		}
 
 		plates[(Size - 1) / 2 * Size + (Size - 1) / 2].AssignColor(Random.Range(0, 6));
 		StartCoroutine(gradualInitialize(matrix,tmp));
-
+		GeneralCanvas.instance.PlayCircle();
 
 	}
 
