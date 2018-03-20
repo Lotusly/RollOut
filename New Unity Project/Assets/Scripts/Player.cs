@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
 			else if (Input.GetKeyDown(KeyCode.Return))
 			{
 				if(ScoreSystem.instance.AddEnergy(-8))
-					Plane.instance.Initialize();
+					Plane.instance.GradualInitialize();
 				
 			}
 		}
@@ -153,7 +153,7 @@ public class Player : MonoBehaviour
 		
 		direction = nextDirection;
 		steps = nextSteps;
-		print("up "+steps);
+		//print("up "+steps);
 		Plane.instance.PlayerGoUp(steps);
 		updateColor(0);
 		//transform.position = new Vector3(0,0,-steps);
@@ -168,7 +168,7 @@ public class Player : MonoBehaviour
 		//print("down");
 		direction = nextDirection;
 		steps = nextSteps;
-		print("down "+steps);
+		//print("down "+steps);
 		Plane.instance.PlayerGoDown(steps);
 		updateColor(1);
 		//transform.position = new Vector3(0,0,steps);
@@ -183,7 +183,7 @@ public class Player : MonoBehaviour
 		//print("left");
 		direction = nextDirection;
 		steps = nextSteps;
-		print("left "+steps);
+		//print("left "+steps);
 		Plane.instance.PlayerGoLeft(steps);
 		updateColor(2);
 		//transform.position = new Vector3(steps,0,0);
@@ -198,7 +198,7 @@ public class Player : MonoBehaviour
 		//print("right");
 		direction = nextDirection;
 		steps = nextSteps;
-		print("right "+steps);
+		//print("right "+steps);
 		Plane.instance.PlayerGoRight(steps);
 		updateColor(3);
 		//transform.position = new Vector3(-steps,0,0);
