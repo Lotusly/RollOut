@@ -37,7 +37,7 @@ public class GeneralCanvas : MonoBehaviour
 	private IEnumerator playCircle()
 	{
 		yield return null;
-		float size = 1;
+		float size = 100;
 		float a = 1;
 		RectTransform rect = circle.gameObject.GetComponent<RectTransform>();
 		rect.sizeDelta=new Vector2(1,1);
@@ -45,10 +45,10 @@ public class GeneralCanvas : MonoBehaviour
 		circle.enabled = true;
 		while (a>0)
 		{
-			a *= 1 - 0.05f;
+			a -=0.05f;
 			circle.color = new Color(0, 1, 0, a);
-			size *= 1 + 0.1f;
-			rect.sizeDelta = new Vector2(size, size);
+			size += 50f;
+			rect.localScale = new Vector3(size,size,size);
 			yield return new WaitForSeconds(0.02f);
 		}
 		circle.enabled = false;

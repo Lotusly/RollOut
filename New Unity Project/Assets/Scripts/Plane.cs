@@ -77,7 +77,7 @@ public class Plane : MonoBehaviour
 			{
 				int x = (Size - 1) / 2 - (i + 1);
 				int y = (Size - 1) / 2 - (i + 1) + j;
-				print("matrix: " + i + " " + j + " plates: " + x + " " + y);
+				//print("matrix: " + i + " " + j + " plates: " + x + " " + y);
 
 				matrix[i, j] = plates[x * Size + y];
 			}
@@ -85,7 +85,7 @@ public class Plane : MonoBehaviour
 			{
 				int x = (Size - 1) / 2 - (i + 1)+j;
 				int y = (Size - 1) / 2 + (i + 1);
-				print("matrix: " + i + " " + j + " plates: " + x + " " + y);
+				//print("matrix: " + i + " " + j + " plates: " + x + " " + y);
 
 				matrix[i, j+(i+1)*2] = plates[x * Size + y];
 			}
@@ -93,7 +93,7 @@ public class Plane : MonoBehaviour
 			{
 				int x = (Size - 1) / 2 + (i + 1);
 				int y = (Size - 1) / 2 + (i + 1) - j;
-				print("matrix: " + i + " " + j + " plates: " + x + " " + y);
+				//print("matrix: " + i + " " + j + " plates: " + x + " " + y);
 
 				matrix[i, j+(i+1)*4] = plates[x * Size + y];
 			}
@@ -101,7 +101,7 @@ public class Plane : MonoBehaviour
 			{
 				int x = (Size - 1) / 2 + (i + 1) - j;
 				int y = (Size - 1) / 2 - (i + 1);
-				print("matrix: " + i + " " + j + " plates: " + x + " " + y);
+				//print("matrix: " + i + " " + j + " plates: " + x + " " + y);
 
 				matrix[i, j+(i+1)*6] = plates[x * Size + y];
 			}
