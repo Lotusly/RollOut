@@ -80,6 +80,7 @@ public class Player : MonoBehaviour
 				{
 					if(ScoreSystem.instance.AddEnergy(-4))
 						nextSteps = 2;
+					SoundController.instance.PlaySound("LargeJump");
 				}
 				else
 				{
@@ -97,6 +98,8 @@ public class Player : MonoBehaviour
 				{
 					if(ScoreSystem.instance.AddEnergy(-4))
 						nextSteps = 2;
+					SoundController.instance.PlaySound("LargeJump");
+
 
 				}
 				else
@@ -113,7 +116,9 @@ public class Player : MonoBehaviour
 				if (Input.GetKey(KeyCode.Space))
 				{
 					if(ScoreSystem.instance.AddEnergy(-4))
-						nextSteps = 2;			
+						nextSteps = 2;		
+					SoundController.instance.PlaySound("LargeJump");
+
 				}
 				else
 				{
@@ -129,6 +134,8 @@ public class Player : MonoBehaviour
 				{
 					if(ScoreSystem.instance.AddEnergy(-4))
 						nextSteps = 2;
+					SoundController.instance.PlaySound("LargeJump");
+
 				}
 				else
 				{
@@ -290,6 +297,7 @@ public class Player : MonoBehaviour
 			//print("center color = " + center.ToString());
 			if (faces[0].color == center)
 			{
+				SoundController.instance.PlaySound("Score");
 				Plane.instance.HitCenter();
 				ScoreSystem.instance.AddScore(1);
 				ScoreSystem.instance.AddEnergy(1);

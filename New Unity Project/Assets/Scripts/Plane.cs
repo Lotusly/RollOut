@@ -115,6 +115,7 @@ public class Plane : MonoBehaviour
 
 	private IEnumerator gradualInitialize(Plate[,] matrix,int size)
 	{
+		SoundController.instance.PlaySound("Regeneration");
 		for (int i = 0; i < size; i++)
 		{
 			yield return new WaitForSecondsRealtime(0.2f);
